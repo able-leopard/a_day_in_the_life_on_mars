@@ -170,7 +170,7 @@ class MarsGenerator extends Component {
                             <h4>Curiosity</h4>
                             <img    
                                     className={( this.state.clickedRover === "curiosity" ? "highlight-rover": "")}
-                                    src={require("/home/hzren/learning/React/nasa-app/src/Photos/curiosityRover.jpg")}
+                                    src={require("./Photos/curiosityRover.jpg")}
                                     alt="curiosity"
                                     name="selectedRover"
                                     onClick={(event) => {
@@ -197,7 +197,7 @@ class MarsGenerator extends Component {
                             <h4>Opportunity</h4>
                             <img    
                                     className={( this.state.clickedRover === "opportunity" ? "highlight-rover": "")}
-                                    src={require("/home/hzren/learning/React/nasa-app/src/Photos/opportunityRover.jpg")}
+                                    src={require("./Photos/opportunityRover.jpg")}
                                     alt="opportunity"
                                     name="selectedRover"
                                     onClick={(event) => {
@@ -224,7 +224,7 @@ class MarsGenerator extends Component {
                             <h4>Spirit</h4>
                             <img    
                                     className={( this.state.clickedRover === "spirit" ? "highlight-rover": "")}
-                                    src={require("/home/hzren/learning/React/nasa-app/src/Photos/spiritRover.jpg")}
+                                    src={require("./Photos/spiritRover.jpg")}
                                     alt="spirit"
                                     name="selectedRover"
                                     onClick={(event) => {
