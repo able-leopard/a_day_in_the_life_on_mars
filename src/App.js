@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MarsGenerator from './MarsGenerator'
 
-// To DO:
-// Make this responsive
 
-// review eventlistner later
 class App extends Component {
   
   render() {
