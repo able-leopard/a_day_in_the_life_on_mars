@@ -17,7 +17,7 @@ class App extends Component {
         <nav className="nav-bar">
           <h1 className="top-title">A Day In The Life </h1>
           <img className="mars-image" src={require("./Photos/mars.jpg")} alt="mars"/>
-          <h1 className="top-title">n Mars</h1>
+          <h1 className="top-title">n Saturn</h1>
         </nav>
         <br/>
         <MarsGenerator/>
