@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import MarsGenerator from './MarsGenerator'
-import PicOfDayGenerator from './PicOfDayGenerator'
 
 // To DO:
 // Make this responsive
