@@ -7,6 +7,7 @@ import MarsImage from "./MarsImage"
 
 const apiKey = process.env.REACT_APP_API_KEY
 console.log(process.env)
+console.log(apiKey)
 // we make an initial API call based on the a pre-set date to get photos of all three rovers from that day
 // whenever the date changes, we call componentDidMount to make an new api call based on the date
 // this.state.selectedRover was created to keep track of what array of photos we're using based on the rover that we selected (curosity, opportunity, spirit)
