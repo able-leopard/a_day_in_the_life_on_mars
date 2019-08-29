@@ -37,7 +37,7 @@ class MarsGenerator extends Component {
                         loadingOpportunity: true,
                         loadingSpirit: true,})
         
-        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${this.state.dateTaken}&api_key=${apiKey}`)
+        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${this.state.dateTaken}&api_key=lk2E7XSULaqDRRlqfymjRgLGU3RSukzqlh3REvB9`)
         .then(response => response.json())
         .then(response => {
             const photos = response.photos
@@ -48,7 +48,7 @@ class MarsGenerator extends Component {
             })
         })
 
-        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=${this.state.dateTaken}&api_key=${apiKey}`)
+        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=${this.state.dateTaken}&api_key=lk2E7XSULaqDRRlqfymjRgLGU3RSukzqlh3REvB9`)
         .then(response => response.json())
         .then(response => {
             const photos = response.photos
@@ -58,7 +58,7 @@ class MarsGenerator extends Component {
             })
         })
 
-        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?earth_date=${this.state.dateTaken}&api_key=${apiKey}`)
+        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?earth_date=${this.state.dateTaken}&api_key=lk2E7XSULaqDRRlqfymjRgLGU3RSukzqlh3REvB9`)
         .then(response => response.json())
         .then(response => {
             const photos = response.photos
