@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import MarsImage from "./MarsImage"
 
-// require('dotenv').config();
-console.log(process.env)
+// https://stackoverflow.com/questions/48699820/how-do-i-hide-api-key-in-create-react-app
+// great stackoverflow on how to hide API key
+
 const apiKey = process.env.REACT_APP_API_KEY
-console.log(apiKey)
+
 // we make an initial API call based on the a pre-set date to get photos of all three rovers from that day
 // whenever the date changes, we call componentDidMount to make an new api call based on the date
 // this.state.selectedRover was created to keep track of what array of photos we're using based on the rover that we selected (curosity, opportunity, spirit)
@@ -37,7 +38,7 @@ class MarsGenerator extends Component {
                         loadingOpportunity: true,
                         loadingSpirit: true,})
         
-        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${this.state.dateTaken}&api_key=lk2E7XSULaqDRRlqfymjRgLGU3RSukzqlh3REvB9`)
+        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${this.state.dateTaken}&api_key=${apiKey}`)
         .then(response => response.json())
         .then(response => {
             const photos = response.photos
@@ -48,7 +49,7 @@ class MarsGenerator extends Component {
             })
         })
 
-        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=${this.state.dateTaken}&api_key=lk2E7XSULaqDRRlqfymjRgLGU3RSukzqlh3REvB9`)
+        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=${this.state.dateTaken}&api_key=${apiKey}`)
         .then(response => response.json())
         .then(response => {
             const photos = response.photos
@@ -58,7 +59,7 @@ class MarsGenerator extends Component {
             })
         })
 
-        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?earth_date=${this.state.dateTaken}&api_key=lk2E7XSULaqDRRlqfymjRgLGU3RSukzqlh3REvB9`)
+        fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?earth_date=${this.state.dateTaken}&api_key=${apiKey}`)
         .then(response => response.json())
         .then(response => {
             const photos = response.photos
