@@ -5,9 +5,10 @@ import MarsImage from "./MarsImage"
 // https://stackoverflow.com/questions/48699820/how-do-i-hide-api-key-in-create-react-app
 // great stackoverflow on how to hide API key
 
-const apiKey = process.env.REACT_APP_API_KEY
-console.log(process.env)
-console.log(apiKey)
+// have to figure out how to properly set production env later
+// const apiKey = process.env.REACT_APP_API_KEY
+const apiKey = "lk2E7XSULaqDRRlqfymjRgLGU3RSukzqlh3REvB9"
+
 // we make an initial API call based on the a pre-set date to get photos of all three rovers from that day
 // whenever the date changes, we call componentDidMount to make an new api call based on the date
 // this.state.selectedRover was created to keep track of what array of photos we're using based on the rover that we selected (curosity, opportunity, spirit)
