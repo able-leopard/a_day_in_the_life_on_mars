@@ -6,8 +6,9 @@ import MarsGenerator from './MarsGenerator'
 class App extends Component {
   
   render() {
+
     return (
-      
+        
       <div className="stars">
         <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"/>
