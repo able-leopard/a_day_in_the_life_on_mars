@@ -205,11 +205,7 @@ html{
 }
 
 .img-normal-opacity{
-  opacity: 1;
-}
-
-.img-unavailable {
-  opacity: .2;
+  opacity: 0.2;
 }
 
 /* retrieve-photos button styling */
@@ -582,35 +578,37 @@ html{
     font-size: 1rem;
     cursor: pointer;
   }
-
-  .overlay h4 {
-    margin-top: -1100px;
-    /* margin-bottom: 200px; */
-    margin-left: -500px;
-    color: white
-  }
-
   .close-button {
-    margin-top: 0px;
+    margin-top: -200px;
     margin-bottom: -80px;
     margin-left: -520px;
   }
 
   .next-button {
     margin-left: 150px;
-    margin-top: -70px;
+    margin-top: -450px;
   }
 
   .prev-button {
     margin-right: 1300px;
     margin-left: 80px;
-    margin-top: -600px;
+    margin-top: -800px;
     width: 80px;
   }
+
+  .overlay h4 {
+    margin-bottom: 400px;
+    margin-left: -500px;
+    color: white
+  }
+
 }
 
 /* responsive for phones */
-@media only screen and (max-width: 425px) and (min-width: 1px){
+@media only screen and (min-width: 319px) 
+  and (max-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait){
   
   body{
     width: 1000px
@@ -836,26 +834,23 @@ html{
     background: rgba(0, 0, 0, 0.7);
     font-size: 2.5rem;
     cursor: pointer;
-    margin-top: 330px;
+    margin-top: 30px;
   }
   .close-button {
-    margin-top: -200px;
     margin-left: -320px;
   }
   .next-button {
     margin-left: 500px;
-    margin-bottom: -420px;
+    margin-bottom: -320px;
   }
   .prev-button {
-    margin-top: -100px;
     margin-bottom: 900px;
     margin-left: 10px;
     margin-right: 1300px;
     width: 180px;
   } 
   .overlay h4 {
-    margin-top: -450px;
-    margin-bottom: 1000px;
+    margin-top: 350px;
     margin-left: -300px;
     color: white;
     font-size: 2.5rem;

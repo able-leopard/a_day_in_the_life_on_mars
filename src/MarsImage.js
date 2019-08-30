@@ -106,7 +106,6 @@ class MarsImage extends Component {
  
         return ( 
             <div>
-                
                 <section className="gallery">
                    {
                     myAlbum.map((image, index) => <ImagePreview     key={image.id}
