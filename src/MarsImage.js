@@ -1,5 +1,5 @@
-import React, { Component, useCallback  } from 'react';
-import {useState} from 'react';
+import React, { Component } from 'react';
+
 import './App.css';
 
 // trying to get dimension of images
@@ -10,121 +10,123 @@ import './App.css';
 // code example: https://jsfiddle.net/69z2wepo/113099/
 // Stackoverflow: https://stackoverflow.com/questions/48944971/react-js-change-color-on-click-and-put-defaul-color-on-all-other-ones
 
-const ImagePreview = (props) => {
-
-    return(
-        <div    className={(props.clicked ? "overlay": "item")}
-                >               
-            <img   
-                    onLoad={props.onImgLoad}
-                    src={props.src}
-                    />
-            <div className={(props.clicked ? "overlay" : "item__overlay")}>
-                { // if clicked display the Close button, otherwise display View buttion for all
-                    props.clicked ?
-                    [
-                        <button className="close-button"
-                                onClick={props.clickReset}
-                                onKeyDown={props.escFunction}>× Close</button>,
-                        <button className="next-button"
-                                onClick={props.getNextPhoto}
-                                > 
-                                Next → 
-                        </button>,
-                        <button className="prev-button"
-                                onClick={props.getPrevPhoto}
-                                > 
-                                ← Prev 
-                        </button>,
-                        <br/>,
-                        <h4> Photo {props.index+1} of {props.albumLength}</h4>,
-                    ]
-                        :
-                    <button onClick={props.clickExpandImage}>View → {props.index+1} of {props.albumLength}</button>
-                }        
-            </div>
-        </div>
-    )
-}
+const ImagePreview = props => (
+  <div className={props.clicked ? 'overlay' : 'item'}>
+    <img onLoad={props.onImgLoad} src={props.src} />
+    <div className={props.clicked ? 'overlay' : 'item__overlay'}>
+      {// if clicked display the Close button, otherwise display View buttion for all
+      props.clicked ? (
+        [
+          <button
+            className="close-button"
+            onClick={props.clickReset}
+            onKeyDown={props.escFunction}
+          >
+            × Close
+          </button>,
+          <button className="next-button" onClick={props.getNextPhoto}>
+            Next →
+          </button>,
+          <button className="prev-button" onClick={props.getPrevPhoto}>
+            ← Prev
+          </button>,
+          <br />,
+          <h4>
+            {' '}
+            Photo {props.index + 1} of {props.albumLength}
+          </h4>,
+        ]
+      ) : (
+        <button onClick={props.clickExpandImage}>
+          View → {props.index + 1} of {props.albumLength}
+        </button>
+      )}
+    </div>
+  </div>
+);
 
 class MarsImage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dimensions: {},
+      clickedImage: '',
+      initialRender: false,
+    };
+  }
 
-    constructor(props){
-        super(props);
-        this.state = {
-            dimensions: {},
-            clickedImage: "",
-            initialRender: false,
-        };
-    }
+  // this expands the image
+  clickExpandImage = clickedImage => {
+    this.setState({
+      clickedImage,
+    });
+    // console.log(clickedImage.index)
+  };
 
-    // this expands the image
-    clickExpandImage = (clickedImage) => {
-        this.setState({
-            clickedImage: clickedImage,
-        })
-        // console.log(clickedImage.index)
-    }   
-    
-    // this collapes the image
-    clickReset = () => {
-         this.setState({
-             clickedImage: ""
-         })
-    }
+  // this collapes the image
+  clickReset = () => {
+    this.setState({
+      clickedImage: '',
+    });
+  };
 
-    getNextPhoto = (allPhotos, index) => {
-        this.setState({
-            clickedImage: allPhotos[index+1]
-        })
-    }
+  getNextPhoto = (allPhotos, index) => {
+    this.setState({
+      clickedImage: allPhotos[index + 1],
+    });
+  };
 
-    getPrevPhoto = (allPhotos, index) => {
-        this.setState({
-            clickedImage: allPhotos[index-1]
-        })
-    }
+  getPrevPhoto = (allPhotos, index) => {
+    this.setState({
+      clickedImage: allPhotos[index - 1],
+    });
+  };
 
-    // enables the esc key to close image
-    escFunction = (event) => {
-        event.keyCode === 27 ? this.clickReset() : ""
-    }
+  // enables the esc key to close image
+  escFunction = event => {
+    event.keyCode === 27 ? this.clickReset() : '';
+  };
 
-    // this is not actually needed but I just wanted to get the width and length of the images as it was loaded
-    onImgLoad = ({target:img}) => {
-        this.setState({dimensions:{height:img.offsetHeight,
-                                   width:img.offsetWidth},
-                                })
-                            }
-    render() { 
- 
-        const myAlbum = this.props.currentAlbum
-        // console.log(myAlbum)
- 
-        return ( 
-            <div>
-                <section className="gallery">
-                   {
-                    myAlbum.map((image, index) => <ImagePreview     key={image.id}
-                                                                    clicked={image === this.state.clickedImage}
-                                                                    clickExpandImage={() => {this.clickExpandImage(image)}}
-                                                                    clickReset={this.clickReset}
-                                                                    getNextPhoto={() => {this.getNextPhoto(myAlbum, index)}}
-                                                                    getPrevPhoto={() => {this.getPrevPhoto(myAlbum, index)}}
-                                                                    src={image.img_src}
-                                                                    onImgLoad={this.onImgLoad}
-                                                                    escFunction={this.escFunction}
-                                                                    albumLength={myAlbum.length}
-                                                                    index={index}
-                                                                    allPhotos={myAlbum}
-                    />)
-                }
-                </section>
+  // this is not actually needed but I just wanted to get the width and length of the images as it was loaded
+  onImgLoad = ({ target: img }) => {
+    this.setState({
+      dimensions: { height: img.offsetHeight, width: img.offsetWidth },
+    });
+  };
 
-            </div>
+  render() {
+    const myAlbum = this.props.currentAlbum;
+    // console.log(myAlbum)
 
-         );
-    }
+    return (
+      <div>
+        <section className="gallery">
+          {myAlbum.map((image, index) => (
+            <ImagePreview
+              key={image.id}
+              clicked={image === this.state.clickedImage}
+              clickExpandImage={() => {
+                this.clickExpandImage(image);
+              }}
+              clickReset={this.clickReset}
+              getNextPhoto={() => {
+                this.getNextPhoto(myAlbum, index);
+              }}
+              getPrevPhoto={() => {
+                this.getPrevPhoto(myAlbum, index);
+              }}
+              src={image.img_src}
+              onImgLoad={this.onImgLoad}
+              escFunction={this.escFunction}
+              albumLength={myAlbum.length}
+              index={index}
+              allPhotos={myAlbum}
+            />
+          ))}
+        </section>
+      </div>
+    );
+  }
 }
- 
+
 export default MarsImage;

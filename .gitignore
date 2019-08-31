@@ -12,6 +12,9 @@
 # api keys
 .env
 
+# eslintrc
+.eslintrc
+
 # misc
 .DS_Store
 .env
