@@ -40,7 +40,7 @@ const ImagePreview = (props) => {
                         <h4> Photo {props.index+1} of {props.albumLength}</h4>,
                     ]
                         :
-                    <button onClick={props.clickExpand}>View → {props.index+1} of {props.albumLength}</button>
+                    <button onClick={props.clickExpandImage}>View → {props.index+1} of {props.albumLength}</button>
                 }        
             </div>
         </div>
@@ -59,7 +59,7 @@ class MarsImage extends Component {
     }
 
     // this expands the image
-    clickExpand = (clickedImage) => {
+    clickExpandImage = (clickedImage) => {
         this.setState({
             clickedImage: clickedImage,
         })
@@ -73,14 +73,12 @@ class MarsImage extends Component {
          })
     }
 
-    // gets the next photo
     getNextPhoto = (allPhotos, index) => {
         this.setState({
             clickedImage: allPhotos[index+1]
         })
     }
 
-    // gets the previous photo
     getPrevPhoto = (allPhotos, index) => {
         this.setState({
             clickedImage: allPhotos[index-1]
@@ -98,7 +96,6 @@ class MarsImage extends Component {
                                    width:img.offsetWidth},
                                 })
                             }
-
     render() { 
  
         const myAlbum = this.props.currentAlbum
@@ -110,7 +107,7 @@ class MarsImage extends Component {
                    {
                     myAlbum.map((image, index) => <ImagePreview     key={image.id}
                                                                     clicked={image === this.state.clickedImage}
-                                                                    clickExpand={() => {this.clickExpand(image)}}
+                                                                    clickExpandImage={() => {this.clickExpandImage(image)}}
                                                                     clickReset={this.clickReset}
                                                                     getNextPhoto={() => {this.getNextPhoto(myAlbum, index)}}
                                                                     getPrevPhoto={() => {this.getPrevPhoto(myAlbum, index)}}
