@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './App.css';
+import '../App.css';
 
 // trying to get dimension of images
 // https://jsbin.com/dudurunepu/1/edit?js,output

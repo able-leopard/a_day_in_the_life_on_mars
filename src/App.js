@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet'; // this is for changing the tab title: https://github.com/nfl/react-helmet
 import './App.css';
-import MarsGenerator from './MarsGenerator';
+import MarsGenerator from './Components/MarsGenerator';
 
 const TITLE = 'A Day In The Life On Mars';
 
@@ -18,7 +18,7 @@ class App extends Component {
           <img
             className="mars-image"
             // eslint-disable-next-line global-require
-            src={require('./Assets/mars.jpg')}
+            src={require('../src/Assets/mars.jpg')}
             alt="mars"
           />
           <h1 className="top-title">n Mars</h1>
@@ -29,5 +29,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

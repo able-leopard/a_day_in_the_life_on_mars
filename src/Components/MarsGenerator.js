@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 import MarsImage from './MarsImage';
 
 // https://stackoverflow.com/questions/48699820/how-do-i-hide-api-key-in-create-react-app
@@ -29,6 +29,7 @@ class MarsGenerator extends Component {
       dateTaken: '',
       clickedRover: '',
       dateSelected: false, // we use this when dateSelected === true then we'll show the retrieve photos button
+      dateError: "",
     };
   }
 
@@ -92,13 +93,35 @@ class MarsGenerator extends Component {
       : this.setState({ [name]: value });
   };
 
+  isValidDate = (dateString) => {
+    
+    let parts = dateString.split("-");
+    let month = parseInt(parts[1], 10);
+    let year = parseInt(parts[0], 10);
+
+    // Check the ranges of month and year
+    (year < 1800 || year > 2500 || month === 0 || month > 12) ?
+      this.setState({
+        dateError: "Please input a valid date"
+      }) :
+      this.setState({
+        dateError: ""
+      })
+    }
+
   handleDateChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
   handleDateSubmit = event => {
-    // console.log(event.target)
+    
+    console.log(event.target)
+    console.log(this.dateValue.value)
+    
+    const enteredDate = this.dateValue.value
+    this.isValidDate(enteredDate)
+    
     event.preventDefault();
     this.componentDidMount();
     this.setState({
@@ -133,23 +156,25 @@ class MarsGenerator extends Component {
     });
   };
 
-  isValidDate = (dateString) => {
-    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
-        return false;
-    
-    let parts = dateString.split("/");
-    let month = parseInt(parts[0], 10);
-    let year = parseInt(parts[2], 10);
-
-    // Check the ranges of month and year
-    if(year < 1000 || year > 3000 || month === 0 || month > 12)
-        return false;
-  }
+  
 
   render() {
     // the img < className is hardcoded. is there anyway to do this better despite the fact that the dates active must be hardcoded?
-    // have to learn how to access DOM elements in react
-    // for example is there anyway to access the <img> tag or <div> onclick?
+    
+    const {loadingCuriosity, 
+          loadingOpportunity,
+          loadingSpirit,
+          allCuriosityPictures,
+          allOpportunityPictures,
+          allSpiritPictures,
+          selectedRover,
+          currentImg,
+          currentAlbum,
+          rover,
+          dateTaken,
+          clickedRover,
+          dateSelected,
+          dateError} = this.state;
 
     return (
       <div>
@@ -167,16 +192,18 @@ class MarsGenerator extends Component {
         <div className="selection-area">
           <div className="date-selection">
             <h4 className="ipad-step-one">Step 1: Select Date</h4>
-            <input
+            <form onSubmit={this.handleDateSubmit}>
+              <input
               type="date"
-              value={this.state.dateTaken}
+              value={dateTaken}
+              ref={el => this.dateValue=el} // good stackoverflow on how to get input value in react https://stackoverflow.com/questions/44586214/correct-way-to-take-input-values-in-react-js
               name="dateTaken"
               onChange={event => {
                 this.handleDateChange(event);
                 this.resetHighlightedRover();
               }}
-            />
-            <form onSubmit={this.handleDateSubmit}>
+              />
+              <div>{dateError}</div>
               <button className="btn btn-primary">Check for Photos</button>
             </form>
             <h4 className="ipad-step-two">Step 2: Choose your Rover</h4>
@@ -186,14 +213,14 @@ class MarsGenerator extends Component {
             <br />
             <div
               className={
-                this.state.dateTaken === ''
+                dateTaken === ''
                   ? ''
-                  : this.state.dateTaken < '1000-05-25'
+                  : dateTaken < '1000-05-25'
                   ? ''
-                  : this.state.dateTaken < '2012-08-06'
+                  : dateTaken < '2012-08-06'
                   ? 'img-unavailable'
-                  : (this.state.dateSelected === true) &
-                    (this.state.allCuriosityPictures.length === 0)
+                  : (dateSelected === true) &
+                    (allCuriosityPictures.length === 0)
                   ? 'img-unavailable'
                   : ''
               }
@@ -201,11 +228,11 @@ class MarsGenerator extends Component {
               <h4>Curiosity</h4>
               <img
                 className={
-                  this.state.clickedRover === 'curiosity'
+                  clickedRover === 'curiosity'
                     ? 'highlight-rover'
                     : ''
                 }
-                src={require('./Assets/curiosityRover.jpg')}
+                src={require('../Assets/curiosityRover.jpg')}
                 alt="curiosity"
                 name="selectedRover"
                 onClick={event => {
@@ -216,27 +243,27 @@ class MarsGenerator extends Component {
               <p>Landing Date: August 6, 2012</p>
               <p>Termination Date: Still Active</p>
               <h6>
-                {this.state.dateSelected === false
+                {dateSelected === false
                   ? ''
-                  : this.state.loadingCuriosity === true
+                  : loadingCuriosity === true
                   ? 'Loading...'
-                  : this.state.allCuriosityPictures.length < 1
+                  : allCuriosityPictures.length < 1
                   ? 'No photos from this day'
-                  : `${this.state.allCuriosityPictures.length} photos`}
+                  : `${allCuriosityPictures.length} photos`}
               </h6>
             </div>
             <div
               className={
-                this.state.dateTaken === ''
+                dateTaken === ''
                   ? ''
-                  : this.state.dateTaken < '1000-05-25'
+                  : dateTaken < '1000-05-25'
                   ? ''
-                  : this.state.dateTaken < '2004-01-25'
+                  : dateTaken < '2004-01-25'
                   ? 'img-unavailable'
-                  : this.state.dateTaken > '2019-02-13'
+                  : dateTaken > '2019-02-13'
                   ? 'img-unavailable'
-                  : (this.state.dateSelected === true) &
-                    (this.state.allOpportunityPictures.length === 0)
+                  : (dateSelected === true) &
+                    (allOpportunityPictures.length === 0)
                   ? 'img-unavailable'
                   : ''
               }
@@ -244,11 +271,11 @@ class MarsGenerator extends Component {
               <h4>Opportunity</h4>
               <img
                 className={
-                  this.state.clickedRover === 'opportunity'
+                  clickedRover === 'opportunity'
                     ? 'highlight-rover'
                     : ''
                 }
-                src={require('./Assets/opportunityRover.jpg')}
+                src={require('../Assets/opportunityRover.jpg')}
                 alt="opportunity"
                 name="selectedRover"
                 onClick={event => {
@@ -259,27 +286,27 @@ class MarsGenerator extends Component {
               <p>Landing Date: January 25, 2004</p>
               <p>Termination Date: February 13, 2019</p>
               <h6>
-                {this.state.dateSelected === false
+                {dateSelected === false
                   ? ''
-                  : this.state.loadingOpportunity === true
+                  : loadingOpportunity === true
                   ? 'Loading...'
-                  : this.state.allOpportunityPictures.length < 1
+                  : allOpportunityPictures.length < 1
                   ? 'No photos from this day'
-                  : `${this.state.allOpportunityPictures.length} photos`}{' '}
+                  : `${allOpportunityPictures.length} photos`}{' '}
               </h6>
             </div>
             <div
               className={
-                this.state.dateTaken === ''
+                dateTaken === ''
                   ? ''
-                  : this.state.dateTaken < '1000-05-25'
+                  : dateTaken < '1000-05-25'
                   ? ''
-                  : this.state.dateTaken < '2004-01-04'
+                  : dateTaken < '2004-01-04'
                   ? 'img-unavailable'
-                  : this.state.dateTaken > '2011-05-25'
+                  : dateTaken > '2011-05-25'
                   ? 'img-unavailable'
-                  : (this.state.dateSelected === true) &
-                    (this.state.allSpiritPictures.length === 0)
+                  : (dateSelected === true) &
+                    (allSpiritPictures.length === 0)
                   ? 'img-unavailable'
                   : ''
               }
@@ -287,9 +314,9 @@ class MarsGenerator extends Component {
               <h4>Spirit</h4>
               <img
                 className={
-                  this.state.clickedRover === 'spirit' ? 'highlight-rover' : ''
+                  clickedRover === 'spirit' ? 'highlight-rover' : ''
                 }
-                src={require('./Assets/spiritRover.jpg')}
+                src={require('../Assets/spiritRover.jpg')}
                 alt="spirit"
                 name="selectedRover"
                 onClick={event => {
@@ -300,13 +327,13 @@ class MarsGenerator extends Component {
               <p>Landing Date: January 4, 2004</p>
               <p>Termination Date: May 25, 2011</p>
               <h6>
-                {this.state.dateSelected === false
+                {dateSelected === false
                   ? ''
-                  : this.state.loadingSpirit === true
+                  : loadingSpirit === true
                   ? 'Loading...'
-                  : this.state.allSpiritPictures.length < 1
+                  : allSpiritPictures.length < 1
                   ? 'No photos from this day'
-                  : `${this.state.allSpiritPictures.length} photos`}
+                  : `${allSpiritPictures.length} photos`}
               </h6>
             </div>
           </div>
@@ -315,7 +342,7 @@ class MarsGenerator extends Component {
             <form onSubmit={this.handleSubmitAll}>
               <button
                 className="btn btn-primary"
-                hidden={!this.state.dateSelected}
+                hidden={!dateSelected}
               >
                 Retrieve Photos
               </button>
@@ -327,7 +354,7 @@ class MarsGenerator extends Component {
 
         {/* this is the image gallery section */}
         <div className="loaded-photos">
-          <MarsImage currentAlbum={this.state.currentAlbum} />
+          <MarsImage currentAlbum={currentAlbum} />
         </div>
       </div>
     );

@@ -12,8 +12,8 @@
 # api keys
 .env
 
-# eslintrc
-.eslintrc
+# siteID
+.netlify/state.json
 
 # misc
 .DS_Store
