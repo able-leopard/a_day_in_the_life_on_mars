@@ -10,6 +10,9 @@ class App extends Component {
   render() {
     return (
       <div className="stars">
+        <Helmet>
+          <title>{TITLE}</title>
+        </Helmet>
         <nav className="nav-bar">
           <h1 className="top-title">A Day In The Life </h1>
           <img
