@@ -92,7 +92,6 @@ class MarsGenerator extends Component {
       : this.setState({ [name]: value });
   };
 
-  // making api call everything the date changes. Not sure if this is the most efficient way?
   handleDateChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -133,6 +132,19 @@ class MarsGenerator extends Component {
       clickedRover: '',
     });
   };
+
+  isValidDate = (dateString) => {
+    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
+        return false;
+    
+    let parts = dateString.split("/");
+    let month = parseInt(parts[0], 10);
+    let year = parseInt(parts[2], 10);
+
+    // Check the ranges of month and year
+    if(year < 1000 || year > 3000 || month === 0 || month > 12)
+        return false;
+  }
 
   render() {
     // the img < className is hardcoded. is there anyway to do this better despite the fact that the dates active must be hardcoded?
