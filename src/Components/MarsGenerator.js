@@ -13,12 +13,12 @@ const apiKey = process.env.REACT_APP_API_KEY;
 // this.state.selectedRover was created to keep track of what array of photos we're using based on the rover that we selected (curosity, opportunity, spirit)
 
 class MarsGenerator extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      loadingCuriosity: '',
-      loadingOpportunity: '',
-      loadingSpirit: '',
+      loadingCuriosity: true,
+      loadingOpportunity: true,
+      loadingSpirit: true,
       allCuriosityPictures: '',
       allOpportunityPictures: '',
       allSpiritPictures: '',
@@ -35,19 +35,13 @@ class MarsGenerator extends Component {
 
   // had to break the DRY rule here because I can't figure out how to get Promise.all() to handle the api seperately as oppose to in a loop
   componentDidMount() {
-    this.setState({
-      loadingCuriosity: true,
-      loadingOpportunity: true,
-      loadingSpirit: true,
-    });
-
+    
     fetch(
       `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${this.state.dateTaken}&api_key=${apiKey}`
     )
       .then(response => response.json())
       .then(response => {
         const { photos } = response;
-        // console.log(response.photos)
         this.setState({
           loadingCuriosity: false,
           allCuriosityPictures: photos,
@@ -115,10 +109,7 @@ class MarsGenerator extends Component {
   };
 
   handleDateSubmit = event => {
-    
-    console.log(event.target)
-    console.log(this.dateValue.value)
-    
+     
     const enteredDate = this.dateValue.value
     this.isValidDate(enteredDate)
     
@@ -161,20 +152,8 @@ class MarsGenerator extends Component {
   render() {
     // the img < className is hardcoded. is there anyway to do this better despite the fact that the dates active must be hardcoded?
     
-    const {loadingCuriosity, 
-          loadingOpportunity,
-          loadingSpirit,
-          allCuriosityPictures,
-          allOpportunityPictures,
-          allSpiritPictures,
-          selectedRover,
-          currentImg,
-          currentAlbum,
-          rover,
-          dateTaken,
-          clickedRover,
-          dateSelected,
-          dateError} = this.state;
+    const {loadingCuriosity, loadingOpportunity, loadingSpirit, allCuriosityPictures, allOpportunityPictures, allSpiritPictures, selectedRover,
+          currentImg, currentAlbum, rover, dateTaken, clickedRover, dateSelected, dateError} = this.state;
 
     return (
       <div>

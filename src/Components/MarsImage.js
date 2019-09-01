@@ -60,7 +60,6 @@ class MarsImage extends Component {
     this.setState({
       clickedImage,
     });
-    // console.log(clickedImage.index)
   };
 
   // this collapes the image
@@ -96,7 +95,6 @@ class MarsImage extends Component {
 
   render() {
     const myAlbum = this.props.currentAlbum;
-    // console.log(myAlbum)
 
     return (
       <div>
