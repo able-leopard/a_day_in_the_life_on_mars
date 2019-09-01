@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import MarsImage from './MarsImage';
+import MarsRover from './MarsRover';
 
 // https://stackoverflow.com/questions/48699820/how-do-i-hide-api-key-in-create-react-app
 // great stackoverflow on how to hide API key
@@ -10,7 +11,9 @@ const apiKey = process.env.REACT_APP_API_KEY;
 
 // we make an initial API call based on the a pre-set date to get photos of all three rovers from that day
 // whenever the date changes, we call componentDidMount to make an new api call based on the date
-// this.state.selectedRover was created to keep track of what array of photos we're using based on the rover that we selected (curosity, opportunity, spirit)
+
+// we need to make the API call after selecting the date and BEFORE selecting the rover because we want to display ahead of hand how many photos each rover took that day
+// of course if we didn't need that it would be more efficient to run componentDidMount after selecting the rover so we don't need to fetch 3 times
 
 class MarsGenerator extends Component {
   constructor(props) {
@@ -22,19 +25,19 @@ class MarsGenerator extends Component {
       allCuriosityPictures: '',
       allOpportunityPictures: '',
       allSpiritPictures: '',
-      selectedRover: '',
+      selectedRover: '', // this is to keep track of what array of photos we're using based on the rover that we selected (curosity, opportunity, spirit)
       currentImg: '',
-      currentAlbum: [], // remember to initialize this with a list if you want to map it later
-      rover: '',
+      currentAlbum: [], // remember to initialize this as a empty list because we want to eventually load the array of photos into this
       dateTaken: '',
-      clickedRover: '',
       dateSelected: false, // we use this when dateSelected === true then we'll show the retrieve photos button
       dateError: "",
     };
   }
 
+
   // had to break the DRY rule here because I can't figure out how to get Promise.all() to handle the api seperately as oppose to in a loop
   componentDidMount() {
+  
     
     fetch(
       `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${this.state.dateTaken}&api_key=${apiKey}`
@@ -79,14 +82,6 @@ class MarsGenerator extends Component {
     });
   };
 
-  // created a variable in state to capture what array we should use based on what rover we're choosing
-  handleChange = event => {
-    const { name, value, alt } = event.target;
-    alt !== undefined
-      ? this.setState({ [name]: alt })
-      : this.setState({ [name]: value });
-  };
-
   isValidDate = (dateString) => {
     
     let parts = dateString.split("-");
@@ -114,7 +109,7 @@ class MarsGenerator extends Component {
     this.isValidDate(enteredDate)
     
     event.preventDefault();
-    this.componentDidMount();
+    this.componentDidMount(); // whenever the date changes, we call componentDidMount to make an new api call based on the date
     this.setState({
       dateSelected: true,
     });
@@ -123,23 +118,32 @@ class MarsGenerator extends Component {
   handleSubmitAll = event => {
     event.preventDefault();
 
-    // based on what rover we have selected, we choose the appropriate array to perform our operations
-    const photosArray =
-      this.state.selectedRover === 'curiosity'
-        ? this.state.allCuriosityPictures
-        : this.state.selectedRover === 'opportunity'
-        ? this.state.allOpportunityPictures
-        : this.state.allSpiritPictures;
-    this.setState({
-      currentAlbum: photosArray,
-    });
+    const myRover = this.state.selectedRover
+    switch(myRover){
+      case "curiosity":
+        this.setState({
+          currentAlbum: this.state.allCuriosityPictures
+          });
+        break;
+      case "opportunity":
+        this.setState({
+          currentAlbum: this.state.allOpportunityPictures
+          });
+        break;
+      case "spirit":
+        this.setState({
+          currentAlbum: this.state.allSpiritPictures
+          });
+        break;
+      }
+    }
+  
+  highlightClickRover = clickedRover => {
+      this.setState({
+        clickedRover: clickedRover.target.alt,
+      });
   };
 
-  highlightClickRover = clickedRover => {
-    this.setState({
-      clickedRover: clickedRover.target.alt,
-    });
-  };
 
   resetHighlightedRover = () => {
     this.setState({
@@ -147,13 +151,21 @@ class MarsGenerator extends Component {
     });
   };
 
-  
+  // created a variable in state to capture what array we should use based on what rover we're choosing
+  handleChange = event => {
+    const { name, value, alt } = event.target;
+    alt !== undefined
+    ? this.setState({ [name]: alt })
+    : this.setState({ [name]: value });
+  };
 
   render() {
     // the img < className is hardcoded. is there anyway to do this better despite the fact that the dates active must be hardcoded?
     
     const {loadingCuriosity, loadingOpportunity, loadingSpirit, allCuriosityPictures, allOpportunityPictures, allSpiritPictures, selectedRover,
-          currentImg, currentAlbum, rover, dateTaken, clickedRover, dateSelected, dateError} = this.state;
+          currentImg, currentAlbum, dateTaken, clickedRover, dateSelected, dateError} = this.state;
+
+    console.log(this.state.clickedRover)
 
     return (
       <div>
@@ -188,134 +200,15 @@ class MarsGenerator extends Component {
             <h4 className="ipad-step-two">Step 2: Choose your Rover</h4>
           </div>
           <br />
-          <div className="rover-descriptions">
-            <br />
-            <div
-              className={
-                dateTaken === ''
-                  ? ''
-                  : dateTaken < '1000-05-25'
-                  ? ''
-                  : dateTaken < '2012-08-06'
-                  ? 'img-unavailable'
-                  : (dateSelected === true) &
-                    (allCuriosityPictures.length === 0)
-                  ? 'img-unavailable'
-                  : ''
-              }
-            >
-              <h4>Curiosity</h4>
-              <img
-                className={
-                  clickedRover === 'curiosity'
-                    ? 'highlight-rover'
-                    : ''
-                }
-                src={require('../Assets/curiosityRover.jpg')}
-                alt="curiosity"
-                name="selectedRover"
-                onClick={event => {
-                  this.handleChange(event);
-                  this.highlightClickRover(event);
-                }}
-              />
-              <p>Landing Date: August 6, 2012</p>
-              <p>Termination Date: Still Active</p>
-              <h6>
-                {dateSelected === false
-                  ? ''
-                  : loadingCuriosity === true
-                  ? 'Loading...'
-                  : allCuriosityPictures.length < 1
-                  ? 'No photos from this day'
-                  : `${allCuriosityPictures.length} photos`}
-              </h6>
-            </div>
-            <div
-              className={
-                dateTaken === ''
-                  ? ''
-                  : dateTaken < '1000-05-25'
-                  ? ''
-                  : dateTaken < '2004-01-25'
-                  ? 'img-unavailable'
-                  : dateTaken > '2019-02-13'
-                  ? 'img-unavailable'
-                  : (dateSelected === true) &
-                    (allOpportunityPictures.length === 0)
-                  ? 'img-unavailable'
-                  : ''
-              }
-            >
-              <h4>Opportunity</h4>
-              <img
-                className={
-                  clickedRover === 'opportunity'
-                    ? 'highlight-rover'
-                    : ''
-                }
-                src={require('../Assets/opportunityRover.jpg')}
-                alt="opportunity"
-                name="selectedRover"
-                onClick={event => {
-                  this.handleChange(event);
-                  this.highlightClickRover(event);
-                }}
-              />
-              <p>Landing Date: January 25, 2004</p>
-              <p>Termination Date: February 13, 2019</p>
-              <h6>
-                {dateSelected === false
-                  ? ''
-                  : loadingOpportunity === true
-                  ? 'Loading...'
-                  : allOpportunityPictures.length < 1
-                  ? 'No photos from this day'
-                  : `${allOpportunityPictures.length} photos`}{' '}
-              </h6>
-            </div>
-            <div
-              className={
-                dateTaken === ''
-                  ? ''
-                  : dateTaken < '1000-05-25'
-                  ? ''
-                  : dateTaken < '2004-01-04'
-                  ? 'img-unavailable'
-                  : dateTaken > '2011-05-25'
-                  ? 'img-unavailable'
-                  : (dateSelected === true) &
-                    (allSpiritPictures.length === 0)
-                  ? 'img-unavailable'
-                  : ''
-              }
-            >
-              <h4>Spirit</h4>
-              <img
-                className={
-                  clickedRover === 'spirit' ? 'highlight-rover' : ''
-                }
-                src={require('../Assets/spiritRover.jpg')}
-                alt="spirit"
-                name="selectedRover"
-                onClick={event => {
-                  this.handleChange(event);
-                  this.highlightClickRover(event);
-                }}
-              />
-              <p>Landing Date: January 4, 2004</p>
-              <p>Termination Date: May 25, 2011</p>
-              <h6>
-                {dateSelected === false
-                  ? ''
-                  : loadingSpirit === true
-                  ? 'Loading...'
-                  : allSpiritPictures.length < 1
-                  ? 'No photos from this day'
-                  : `${allSpiritPictures.length} photos`}
-              </h6>
-            </div>
+
+          {/* this is the mars rover section */}
+          <div>
+            <MarsRover dateSelected={dateSelected} dateTaken={dateTaken} clickedRover={clickedRover} loadingCuriosity={loadingCuriosity} loadingOpportunity={loadingOpportunity}
+                      loadingSpirit={loadingSpirit} allCuriosityPictures={allCuriosityPictures} allOpportunityPictures={allOpportunityPictures} allSpiritPictures={allSpiritPictures} 
+                      highlightClickRover={this.highlightClickRover} handleChange={this.handleChange}
+                      />
           </div>
+
           <div className="retrieve-photos">
             <h4 className="ipad-step-three">Step 3: Retrieve Photos</h4>
             <form onSubmit={this.handleSubmitAll}>

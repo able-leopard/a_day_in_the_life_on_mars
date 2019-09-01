@@ -52,6 +52,7 @@ class MarsImage extends Component {
       dimensions: {},
       clickedImage: '',
       initialRender: false,
+      containsImage: "",
     };
   }
 
@@ -94,10 +95,16 @@ class MarsImage extends Component {
   };
 
   render() {
-    const myAlbum = this.props.currentAlbum;
+
+    this.props.currentAlbum === null || undefined ? this.setState({
+      containsImage: "please select rover with images"
+    }) : ""
+
+    const myAlbum = this.props.currentAlbum
 
     return (
       <div>
+
         <section className="gallery">
           {myAlbum.map((image, index) => (
             <ImagePreview
@@ -121,7 +128,11 @@ class MarsImage extends Component {
               allPhotos={myAlbum}
             />
           ))}
+          
         </section>
+        <div>
+          {this.state.containsImage}
+        </div>    
       </div>
     );
   }
