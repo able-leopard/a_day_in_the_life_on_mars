@@ -13,7 +13,7 @@
 .env
 
 # siteID
-.netlify/state.json
+../.netlify/state.json
 
 # misc
 .DS_Store
