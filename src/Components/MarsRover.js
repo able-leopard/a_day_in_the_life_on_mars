@@ -2,50 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import IMAGES from '../Assets/imageFiles'
 
-// const singleRover = props => (
 
-//     <div
-//         className={
-//             dateTaken === ''
-//             ? ''
-//             : dateTaken < '1000-05-25'
-//             ? ''
-//             : dateTaken < '2012-08-06'
-//             ? 'img-unavailable'
-//             : (dateSelected === true) &
-//                 (allCuriosityPictures.length === 0)
-//             ? 'img-unavailable'
-//             : ''
-//         }
-//         >
-//         <h4>Curiosity</h4>
-//         <img
-//             className={
-//             clickedRover === 'curiosity'
-//                 ? 'highlight-rover'
-//                 : ''
-//             }
-//             src={require('../Assets/curiosityRover.jpg')}
-//             alt="curiosity"
-//             name="selectedRover"
-//             onClick={event => {
-//             handleChange(event);
-//             highlightClickRover(event);
-//             }}
-//         />
-//         <p>Landing Date: August 6, 2012</p>
-//         <p>Termination Date: Still Active</p>
-//         <h6>
-//             {dateSelected === false
-//             ? ''
-//             : loadingCuriosity === true
-//             ? 'Loading...'
-//             : allCuriosityPictures.length < 1
-//             ? 'No photos from this day'
-//             : `${allCuriosityPictures.length} photos`}
-//         </h6>
-//     </div>
-// )
 
 class MarsRover extends Component {
 
