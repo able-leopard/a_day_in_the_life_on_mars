@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import '../App.css';
 import MarsImage from './MarsImage';
 import MarsRover from './MarsRover';
+
+import '../App.css';
+import '../Small.css';
+
 
 // https://stackoverflow.com/questions/48699820/how-do-i-hide-api-key-in-create-react-app
 // great stackoverflow on how to hide API key
@@ -198,6 +201,17 @@ class MarsGenerator extends Component {
               <button className="btn btn-primary">Check for Photos</button>
             </form>
             <h4 className="ipad-step-two">Step 2: Choose your Rover</h4>
+            <h4 className="ipad-step-three">Step 3: Retrieve Photos</h4>
+            <div className="i-pad-retrieve-photos">
+              <form onSubmit={this.handleSubmitAll}>
+                <button
+                  className="btn btn-primary"
+                  hidden={!dateSelected}
+                >
+                  Retrieve Photos
+                </button>
+              </form>
+            </div>
           </div>
           <br />
 
@@ -208,9 +222,7 @@ class MarsGenerator extends Component {
                       highlightClickRover={this.highlightClickRover} handleChange={this.handleChange}
                       />
           </div>
-
           <div className="retrieve-photos">
-            <h4 className="ipad-step-three">Step 3: Retrieve Photos</h4>
             <form onSubmit={this.handleSubmitAll}>
               <button
                 className="btn btn-primary"

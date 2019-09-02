@@ -1,0 +1,202 @@
+
+  
+  /* responsive for ipad */
+  @media only screen and (max-width: 1480px) and (min-width: 1px){
+    
+    
+    /* nav bar styling */
+    .nav-bar{
+      display: flex;
+      justify-content: flex-start;
+      width: 150%;
+      margin-left: 1%;
+      margin-top: 2%
+    }
+  
+    .mars-image{
+      width: 75px;
+      height: 75px;
+      margin-top: -1%;
+    }
+  
+    .top-title{
+      color: white;
+      font-family: oswald, sans-serif;
+      font-size: 2.5rem;
+      height: 10%;
+    }
+  
+  
+    /* steps bar styling */
+    .steps{
+      display: none;
+    }
+  
+    
+      /* selection area styling */
+    .selection-area{
+      margin-top: 1%;
+      margin-right: 3%;
+      color: white;
+      /* display: flex; */
+    }
+  
+    /* date selection and check for photos button styling */
+    .date-selection{
+      margin-left: 7%;
+    }
+
+    .date-selection > .ipad-step-one{
+        background-image: linear-gradient(to right,#263238, #4f5b62);
+        color: white;
+        font-family: oswald, sans-serif;
+        text-align: center;
+        font-size: 1rem;
+        width: 400px;
+        margin-bottom: 5%;
+        box-shadow: 3px 3px 10px 4px #ccc;
+
+        }
+  
+    .date-selection > form > button{
+        text-align: center;
+        font-size: 1rem;
+        /* margin-top: 5%; */
+        cursor: pointer;
+    }
+
+    .date-selection > .ipad-step-two{
+        /* lumping this in the date-selection section because its eaiser than dealing with the bigger rover selection section */
+        background-image: linear-gradient(to right,#263238, #4f5b62);
+        color: white;
+        font-family: oswald, sans-serif;
+        text-align: center;
+        font-size: 1rem;
+        width: 400px;
+        margin-top: 5%;
+        box-shadow: 3px 3px 10px 4px #ccc;
+        }
+
+    /* rover selection styling */
+    .rover-descriptions{
+      width: 200%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: center;
+      margin-top: 30%;
+      margin-left: -100%;
+    }
+  
+    .rover-descriptions > div > h4 {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-family: oswald, sans-serif;
+    }
+  
+    /* had to use px instead of % here because the original images are different sizes to begin with */
+    .rover-descriptions > div > img {
+      width: 150px;
+      height: 120px;
+      margin-left: 25px;
+      margin-right: 20px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      box-shadow:0px 5px 15px 1px white;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+  
+    .rover-descriptions > div > img:hover {
+      box-shadow:0px 12px 22px 1px #333;
+      transform: scale(1.2);
+    }
+  
+    .rover-descriptions > div > p {
+      font-size: 0.9rem;
+      margin: 0px;
+      font-family: cardo, sans-serif;
+      text-align: left;
+      margin-left: 50px;
+    }
+  
+    .rover-descriptions > div > h6 {
+      font-size: 1.1rem;
+      margin: 0px;
+      font-family: cardo, sans-serif;
+      text-align: center;
+      margin-top: 7%;
+      margin-left: 5%;
+      padding: 10px;
+    }
+  
+    .highlight-rover{
+      border: 1rem outset snow;
+    }
+  
+    .img-normal-opacity{
+      opacity: 0.2;
+    }
+    
+    .date-selection > .ipad-step-three{
+        /* lumping this in the date-selection section because its eaiser than dealing with the bigger rover selection section */
+        background-image: linear-gradient(to right,#263238, #4f5b62);
+        color: white;
+        font-family: oswald, sans-serif;
+        text-align: center;
+        font-size: 1rem;
+        width: 400px;
+        margin-top: 100%;
+        margin-bottom: 10%;
+        box-shadow: 3px 3px 10px 4px #ccc;
+        }
+
+    
+    .retrieve-photos > form > button{
+        display: none;
+        }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 175px);
+      grid-auto-rows: 175px;
+      grid-auto-flow: dense;
+      margin-left: 25px;
+      width: 100%
+    }
+  
+    .overlay img {
+      width: 75%;
+      height: 55%;
+      margin-top: 1%;
+    }
+  
+    .overlay button {
+      background: #ffc60032;
+      border: 2px solid white;
+      color: white;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.7);
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .close-button {
+        margin-top: 5%;
+      }
+    /* had to use px for next & prev buttons because % doesn't stablize height when screen size moves */
+    .next-button {
+        margin-left: 80%;
+        margin-top: 60px;
+        }
+    .prev-button {
+        margin-left: -76%;
+        margin-top: -560px;
+        }
+    .overlay h4 {
+        margin-bottom: 1%;
+        color: white
+        }  
+  }
+  
+  

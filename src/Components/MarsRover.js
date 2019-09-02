@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import '../App.css';
 import IMAGES from '../Assets/imageFiles'
 
-
+import '../App.css';
+import '../Small.css';
 
 class MarsRover extends Component {
 

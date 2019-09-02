@@ -48,27 +48,26 @@ html{
 	to {background-position:10000px 0;}
 }
 
-
 /* nav bar styling */
 .nav-bar{
   display: flex;
-  margin-left: 10px;
-  margin-top: -10px;
+  justify-content: flex-start;
+  width: 100%;
+  margin-left: 1%;
+  margin-top: 2%
 }
 
 .mars-image{
-  width: 70px;
-  height: 70px;
-  margin-top: 20px;
-  margin-left:5px;
-  margin-right:-5px;
+  width: 75px;
+  height: 75px;
+  margin-top: -1%;
 }
 
 .top-title{
   color: white;
   font-family: oswald, sans-serif;
-  margin-top: 40px;
   font-size: 2.5rem;
+  height: 10%;
 }
 
 /* steps bar styling */
@@ -88,75 +87,52 @@ html{
   color: white;
   font-family: oswald, sans-serif;
   text-align: center;
-  line-height: 15px;
+  line-height: 80%;
   margin-top: 5px;
   font-size: 1rem;
 }
 
 .step-one{
-  margin-left: 50px;
+  margin-left: 5%;
 }
 
 .step-two{
-  margin-left: 220px;
+  margin-left: 12%;
 }
 
 .step-three{
-  margin-left: 740px;
+  margin-left: 42%;
 }
 
 /* selection area styling */
 .selection-area{
-  margin-top: 50px;
-  margin-right: 50px;
+  margin-top: 10%;
+  margin-right: 3%;
   color: white;
-  display: grid;
-  grid-template-columns: 25fr 50fr 25fr;
-  grid-template-rows: auto auto auto auto auto;
-  justify-items: start;
-  grid-template-areas:
-    ". rover-descriptions ."
-    "date rover-descriptions ."
-    "date rover-descriptions ."
-    "date rover-descriptions retrieve"
-    "date rover-descriptions retrieve"
-    "date rover-descriptions retrieve";    
+  display: flex;
 }
 
 /* date selection and check for photos button styling */
 .date-selection{
-  grid-area: date;
-  margin-left: 100px;
-  margin-top: 150px;
-  margin-bottom: 200px;
-}
-
-.date-selection > input{
-  grid-area: date;
-  margin-bottom: 50px;
-  width: 200px; 
-  font-size: 1rem;
+  /* flex-shrink: 2; */
+  margin-left: 7%;
 }
 
 .date-selection > form > button{
   text-align: center;
   font-size: 1rem;
-  /* cursor: pointer; */
+  /* margin-top: 5%; */
+  cursor: pointer;
 }
 
 /* rover selection styling */
 .rover-descriptions{
-  grid-area: rover-descriptions;
-  position: relative;
-  width: 1300px;
-  height: 250px;
-  margin-top: 100px;
+  width: 200%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   text-align: center;
-  margin-left: -250px;
-  margin-right: -100px;
+  margin-top: -10%;
 }
 
 .rover-descriptions > div > h4 {
@@ -166,6 +142,7 @@ html{
   font-family: oswald, sans-serif;
 }
 
+/* had to use px instead of % here because the original images are different sizes to begin with */
 .rover-descriptions > div > img {
   width: 150px;
   height: 120px;
@@ -183,21 +160,22 @@ html{
   transform: scale(1.2);
 }
 
-.rover-descriptions > div > h6 {
-  font-size: 1.1rem;
-  margin: 0px;
-  font-family: cardo, sans-serif;
-  text-align: center;
-  margin-top: 20px;
-  padding: 10px;
-}
-
 .rover-descriptions > div > p {
   font-size: 0.9rem;
   margin: 0px;
   font-family: cardo, sans-serif;
   text-align: left;
   margin-left: 50px;
+}
+
+.rover-descriptions > div > h6 {
+  font-size: 1.1rem;
+  margin: 0px;
+  font-family: cardo, sans-serif;
+  text-align: center;
+  margin-top: 7%;
+  margin-left: 5%;
+  padding: 10px;
 }
 
 .highlight-rover{
@@ -211,16 +189,12 @@ html{
 /* retrieve-photos button styling */
 .retrieve-photos{
   grid-area: retrieve;
-}
-
-.retrieve-photos > form > button{
-/* note that any negative margins seems to mess up the mouse cursor */
-  margin-right: 200px;
-  margin-bottom: 200px;
+  margin-top: 2%;
+  margin-right: 50%;
+  margin-left: 35%;
 }
 
 /* loaded gallery styling */
-
 .loaded-photos{
   background-color: white;
 }
@@ -230,7 +204,7 @@ html{
   grid-template-columns: repeat(auto-fill, 175px);
   grid-auto-rows: 175px;
   grid-auto-flow: dense;
-  margin-left: 40px;
+  margin-left: 2%;
 }
 
 .item {
@@ -239,8 +213,8 @@ html{
   display: grid;
   grid-template-columns: 1; 
   grid-template-rows: 1;
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-top: 10%;
+  margin-left: 10%;
 }
 .item img {
   grid-column: 1 / -1;
@@ -321,8 +295,9 @@ html{
   padding: 20px;
 }
 .overlay img {
-  width: 1400px;
-  height: 1000px;
+  width: 75%;
+  height: 75%;
+  /* margin-top: 5%; */
 }
 
 .overlay button {
@@ -333,26 +308,23 @@ html{
   background: rgba(0, 0, 0, 0.7);
   font-size: 1rem;
   cursor: pointer;
+  margin-right: 5%;
 }
-
-.overlay h4 {
-  margin-bottom: -200x;
-  color: white
-}
-
 .close-button {
-  margin-top: -130px;
-  margin-bottom: -80px;
+  margin-top: 1%;
 }
-
+/* had to use px for next & prev buttons because % doesn't stablize height when screen size moves */
 .next-button {
-  margin-left: 1300px;
-  margin-top: 300px;
+  margin-left: 80%;
+  margin-top: 80px; 
 }
-
 .prev-button {
-  margin-right: 1300px;
-  margin-top: -250px;
+  margin-left: -70%;
+  margin-top: -450px;
+}
+.overlay h4 {
+  margin-bottom: 1%;
+  color: white
 }
 
 /* removing the ipad steps for non-ipad screens */
@@ -366,494 +338,11 @@ html{
     display: none;
   }
 
-  .retrieve-photos > .ipad-step-three{
-    display: none;
-  }
-}
-
-/* responsive for ipad */
-@media only screen and (max-width: 1480px) and (min-width: 426px){
-
-  /* nav bar styling */
-  .nav-bar{
-    display: flex;
-    margin-left: 10px;
-    margin-top: -10px;
-  }
-  .mars-image{
-    width: 70px;
-    height: 70px;
-    margin-top: 20px;
-    margin-left:5px;
-    margin-right:-5px;
-  }
-
-  .top-title{
-    color: white;
-    font-family: oswald, sans-serif;
-    margin-top: 40px;
-    font-size: 2.5rem;
-  }
-
-    /* steps bar styling */
-  .steps{
+  .date-selection > .ipad-step-three{
     display: none;
   }
 
-  .selection-area{
-    margin-top: -150px;
-    /* margin-right: 50px; */
-    color: white;
-    display: grid;
-    grid-template-columns: 25fr 50fr 25fr;
-    grid-template-rows: auto auto auto auto auto;
-    justify-items: start;
-    grid-template-areas:
-      "date date date"
-      "rover-descriptions rover-descriptions rover-descriptions"
-      "rover-descriptions rover-descriptions rover-descriptions"
-      "rover-descriptions rover-descriptions rover-descriptions"
-      "rover-descriptions rover-descriptions rover-descriptions"
-      "retrieve retrieve retrieve";    
-  }
-
-  /* date selection and check for photos button styling */
-  .date-selection{
-    grid-area: date;
-    margin-left: 0px;
-    /* margin-top: 150px; */
-    /* margin-bottom: 200px; */
-  }
-
-  .date-selection > .ipad-step-one{
-    background-image: linear-gradient(to right,#263238, #4f5b62);
-    color: white;
-    font-family: oswald, sans-serif;
-    text-align: center;
-    font-size: 1rem;
-    width: 400px;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-shadow: 3px 3px 10px 4px #ccc;
-
-  }
-
-  .date-selection > input{
-    grid-area: date;
-    margin-top: 10px;
-    margin-bottom: 50px;
-    width: 200px; 
-    font-size: 1rem;
-  }
-
-  .date-selection > form > button{
-    text-align: center;
-    font-size: 1rem;
-    margin-bottom: 30px;
-    /* cursor: pointer; */
-  }
-
-  .date-selection > .ipad-step-two{
-    /* lumping this in the date-selection section because its eaiser than dealing with the bigger rover selection section */
-    background-image: linear-gradient(to right,#263238, #4f5b62);
-    color: white;
-    font-family: oswald, sans-serif;
-    text-align: center;
-    font-size: 1rem;
-    width: 400px;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-shadow: 3px 3px 10px 4px #ccc;
-  }
-
-  /* rover selection styling */
-  .rover-descriptions{
-    grid-area: rover-descriptions;
-    /* width: 1000px; */
-    margin-top: -180px;
-    margin-left: -320px;
-    
-  }
-
-  .rover-descriptions > div > h4 {
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    font-family: oswald, sans-serif;
-    margin-left: 20px;
-
-  }
-
-  .rover-descriptions > div > img {
-    width: 150px;
-    height: 120px;
-    margin-right: 20px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    box-shadow:0px 5px 15px 1px white;
-    cursor: pointer;
-    border-radius: 50%;
-  }
-
-  .rover-descriptions > div > img:hover {
-    box-shadow:0px 12px 22px 1px #333;
-    transform: scale(1.2);
-  }
-
-  .rover-descriptions > div > h6 {
-    font-size: 1.1rem;
-    margin: 0px;
-    font-family: cardo, sans-serif;
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-  }
-
-  .rover-descriptions > div > p {
-    font-size: 0.9rem;
-    margin: 0px;
-    font-family: cardo, sans-serif;
-    margin-top: 20px;
-    margin-left: 20px;
-  }
-
-  .highlight-rover{
-    border: 1rem outset snow;
-  }
-
-  .img-normal-opacity{
-    opacity: 1;
-  }
-
-  .img-unavailable {
-    opacity: .2;
-  }
-
-  /* retrieve-photos button styling */
-  .retrieve-photos{
-    grid-area: retrieve;
-    margin-top: 100px;
-    margin-bottom: -200px;
-  }
-
-  .retrieve-photos > .ipad-step-three{
-    background-image: linear-gradient(to right,#263238, #4f5b62);
-    color: white;
-    font-family: oswald, sans-serif;
-    text-align: center;
-    font-size: 1rem;
-    width: 400px;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-shadow: 3px 3px 10px 4px #ccc;
-  }
-
-  .retrieve-photos > form > button{
-  /* note that any negative margins seems to mess up the mouse cursor */
-    margin-top: 20px;
-    margin-right: 200px;
-  }
-
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 175px);
-    grid-auto-rows: 175px;
-    grid-auto-flow: dense;
-    margin-left: 25px;
-  }
-
-  .overlay img {
-    width: 700px;
-    height: 500px;
-    margin-top: -500px;
-    margin-left: -100px;
-  }
-
-  .overlay button {
-    background: #ffc60032;
-    border: 2px solid white;
-    color: white;
-    text-transform: uppercase;
-    background: rgba(0, 0, 0, 0.7);
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  .close-button {
-    margin-top: -200px;
-    margin-bottom: -80px;
-    margin-left: -520px;
-  }
-
-  .next-button {
-    margin-left: 150px;
-    margin-top: -450px;
-  }
-
-  .prev-button {
-    margin-right: 1300px;
-    margin-left: 80px;
-    margin-top: -800px;
-    width: 80px;
-  }
-
-  .overlay h4 {
-    margin-bottom: 400px;
-    margin-left: -500px;
-    color: white
-  }
-
-}
-
-/* responsive for phones */
-@media only screen and (min-width: 319px) 
-  and (max-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait){
-  
-  body{
-    width: 1000px
-  }
-
-  /* nav bar styling */
-  .nav-bar{
-    display: flex;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .mars-image{
-    width: 100px;
-    height: 100px;
-    margin-top: 10px;
-    margin-left:5px;
-    margin-right:-5px;
-  }
-
-  .top-title{
-    color: white;
-    font-family: oswald, sans-serif;
-    margin-top: 40px;
-    font-size: 3.5rem;
-  }
-
-  /* steps bar styling */
-  .steps{
+  .i-pad-retrieve-photos > form > button{
     display: none;
   }
-   
-  .selection-area{
-    margin-top: -150px;
-    color: white;
-    display: grid;
-    grid-template-columns: 25fr 50fr 25fr;
-    grid-template-rows: auto auto auto auto auto;
-    justify-items: start;
-    grid-template-areas:
-      "date date date"
-      "rover-descriptions rover-descriptions rover-descriptions"
-      "rover-descriptions rover-descriptions rover-descriptions"
-      "rover-descriptions rover-descriptions rover-descriptions"
-      "rover-descriptions rover-descriptions rover-descriptions"
-      "retrieve retrieve retrieve";    
-  }
-
-  /* date selection and check for photos button styling */
-  .date-selection{
-    grid-area: date;
-    margin-left: 0px;
-  }
-
-  .date-selection > .ipad-step-one{
-    background-image: linear-gradient(to right,#263238, #4f5b62);
-    color: white;
-    font-family: oswald, sans-serif;
-    text-align: center;
-    font-size: 2rem;
-    width: 400px;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-shadow: 3px 3px 10px 4px #ccc;
-  }
-
-  .date-selection > input{
-    grid-area: date;
-    margin-top: 15px;
-    margin-bottom: 50px;
-    width: 300px; 
-    font-size: 2rem;
-  }
-
-  .date-selection > form > button{
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 30px;
-  }
-
-  .date-selection > .ipad-step-two{
-    /* lumping this in the date-selection section because its eaiser than dealing with the bigger rover selection section */
-    background-image: linear-gradient(to right,#263238, #4f5b62);
-    color: white;
-    font-family: oswald, sans-serif;
-    text-align: center;
-    font-size: 2rem;
-    width: 400px;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-shadow: 3px 3px 10px 4px #ccc;
-  }
-
-  /* rover selection styling */
-  .rover-descriptions{
-    grid-area: rover-descriptions;
-    margin-top: -180px;
-    margin-left: -180px;
-  }
-
-  .rover-descriptions > div > h4 {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    font-family: oswald, sans-serif;
-    margin-left: 20px;
 }
-
-  .rover-descriptions > div > img {
-    width: 150px;
-    height: 120px;
-    margin-right: 20px;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    box-shadow:0px 5px 15px 1px white;
-    cursor: pointer;
-    border-radius: 50%;
-  }
-
-  .rover-descriptions > div > img:hover {
-    box-shadow:0px 12px 22px 1px #333;
-    transform: scale(1.2);
-  }
-
-  .rover-descriptions > div > h6 {
-    font-size: 2rem;
-    margin: 0px;
-    font-family: cardo, sans-serif;
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-  }
-
-  .rover-descriptions > div > p {
-    font-size: 1.2rem;
-    margin: 0px;
-    font-family: cardo, sans-serif;
-    /* margin-top: 20px; */
-    margin-left: 20px;
-  }
-
-  .highlight-rover{
-    border: 1rem outset snow;
-  }
-
-  .img-normal-opacity{
-    opacity: 1;
-  }
-
-  .img-unavailable {
-    opacity: .2;
-  }
-
-  /* retrieve-photos button styling */
-  .retrieve-photos{
-    grid-area: retrieve;
-    margin-top: 100px;
-    margin-bottom: -200px;
-  }
-
-  .retrieve-photos > .ipad-step-three{
-    background-image: linear-gradient(to right,#263238, #4f5b62);
-    color: white;
-    font-family: oswald, sans-serif;
-    text-align: center;
-    font-size: 2rem;
-    width: 400px;
-    margin-top: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-shadow: 3px 3px 10px 4px #ccc;
-  }
-
-  .retrieve-photos > form > button{
-  /* note that any negative margins seems to mess up the mouse cursor */
-    margin-top: 20px;
-    margin-right: 200px;
-    font-size: 2rem;
-  }
-
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 175px);
-    grid-auto-rows: 175px;
-    grid-auto-flow: dense;
-    margin-left: 50px;
-  }
-
-  .item__overlay button {
-    background: none;
-    border: 2px solid white;
-    color: white;
-    text-transform: uppercase;
-    background: rgba(0, 0, 0, 0.7);
-    margin-bottom: 10px;
-    font-size: 2rem;
-    cursor: pointer;
-    }
-  .overlay {
-    position: fixed;
-    background: rgba(0, 0, 0, 0.7);
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: none;
-    z-index: 2;
-    display: grid;
-    align-items: center;
-    justify-items: center;
-  }
-  .overlay img {
-    margin-bottom: 300px;
-    width: 1000px;
-    height: 800px;
-  }
-  .overlay button {
-    background: #ffc60032;
-    border: 2px solid white;
-    color: white;
-    text-transform: uppercase;
-    background: rgba(0, 0, 0, 0.7);
-    font-size: 2.5rem;
-    cursor: pointer;
-    margin-top: 30px;
-  }
-  .close-button {
-    margin-left: -320px;
-  }
-  .next-button {
-    margin-left: 500px;
-    margin-bottom: -320px;
-  }
-  .prev-button {
-    margin-bottom: 900px;
-    margin-left: 10px;
-    margin-right: 1300px;
-    width: 180px;
-  } 
-  .overlay h4 {
-    margin-top: 350px;
-    margin-left: -300px;
-    color: white;
-    font-size: 2.5rem;
-  }
-}
-

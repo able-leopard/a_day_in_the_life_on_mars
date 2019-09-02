@@ -1,10 +1,12 @@
 /* eslint-disable jsx-a11y/html-has-lang */
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet'; // this is for changing the tab title: https://github.com/nfl/react-helmet
-import './App.css';
+
 import MarsGenerator from './Components/MarsGenerator';
 import IMAGES from '../src/Assets/imageFiles'
 
+import './App.css';
+import './Small.css';
 
 const TITLE = 'A Day In The Life On Mars';
 
